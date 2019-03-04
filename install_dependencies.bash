@@ -1,6 +1,11 @@
 #!/bin/bash
 #installs all dependencies for this project
 
+#make sure system is up to date
+sudo apt-get update
+sudo apt-get upgrade -y
+
+#make directory for git repositories
 mkdir dependencies
 cd dependencies
 
@@ -20,4 +25,30 @@ mkdir build
 cd build
 cmake ..
 sudo make -j4 install
+cd ../..
+
+#OpenSplice
+git clone https://github.com/ADLINK-IST/opensplice.git
+cd opensplice
+
+sudo apt-get install -y gawk flex bison perl gsoap
+source ./configure armv6l.linux-dev
+echo "alias ospl=\"source $HOME/opensplice/install/HDE/$TARGET/release.com\"" >> ~/.bashrc
+source $HOME/.bashrc
+source $HOME/opensplice/install/HDE/$TARGET/release.com
+make
+make install
+cd ..
+
+#RabbitMQ
+sudo apt-get install rabbitmq-server -y
+
+#RabbitMQ C++
+git clone https://github.com/CopernicaMarketingSoftware/AMQP-CPP.git
+cd AMQP-CPP
+sudo apt-get install libssl-dev -y
+mkdir build
+cd build
+make
+make install
 cd ../..

@@ -23,9 +23,8 @@ set(CMAKE_CXX_STANDARD 11)
 # add the executable
 add_executable(ECU_Communication main.cpp)
 
-#find cppzmq wrapper, installed by make of cppzmq
-find_package(cppzmq)
-target_link_libraries(ECU_Communication PUBLIC zmq)
+#link amqpcpp, a RabbitMQ C++ client
+target_link_libraries(ECU_Communication PUBLIC amqpcpp)
 
 # add the install targets
 install (TARGETS ECU_Communication DESTINATION bin)

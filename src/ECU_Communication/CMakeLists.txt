@@ -26,7 +26,7 @@ add_executable(ECU_Communication main.cpp)
 ## add the include directory to our compile directives
 #target_include_directories(ECU_Communication PUBLIC ${ZeroMQ_INCLUDE_DIR})
 ## at the 0mq library to our link directive
-target_link_libraries(ECU_Communication PUBLIC zmq)
+target_link_libraries(ECU_Communication PUBLIC ccpzmq)
 
 # add the install targets
 install (TARGETS ECU_Communication DESTINATION bin)

@@ -1,2 +1,2 @@
-add_subdirectory(cppzmq)
 add_subdirectory(libzmq)
+add_subdirectory(cppzmq)

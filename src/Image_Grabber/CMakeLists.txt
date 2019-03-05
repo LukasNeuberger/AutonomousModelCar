@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project (ECU_Communication)
+project (Image_Grabber)
 
 # The version number.
 set (Tutorial_VERSION_MAJOR 1)
@@ -21,12 +21,12 @@ include_directories("${PROJECT_BINARY_DIR}")
 set(CMAKE_CXX_STANDARD 11)
 
 # add the executable
-add_executable(ECU_Communication main.cpp)
+add_executable(Image_Grabber main.cpp)
 
 #link amqpcpp, a RabbitMQ C++ client
-target_link_libraries(ECU_Communication PUBLIC mosquitto)
+target_link_libraries(Image_Grabber PUBLIC mosquitto)
 
 # add the install targets
-install (TARGETS ECU_Communication DESTINATION bin)
+install (TARGETS Image_Grabber DESTINATION bin)
 install (FILES "${PROJECT_BINARY_DIR}/Config.h"
          DESTINATION include)

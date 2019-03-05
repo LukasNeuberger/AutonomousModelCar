@@ -46,3 +46,4 @@ _deps
 
 #build directory
 /build/
+/dependencies/

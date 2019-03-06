@@ -14,7 +14,7 @@ cd dependencies
 
 #ZeroMQ message queueing
 #git clone https://github.com/zeromq/libzmq.git
-#cd libzmq 
+#cd libzmq
 #mkdir build
 #cd build
 #cmake ..
@@ -45,6 +45,7 @@ cd dependencies
 
 #RabbitMQ
 sudo apt-get install rabbitmq-server -y
+sudo rabbitmq-plugins enable rabbitmq_mqtt
 
 #RabbitMQ C++
 git clone https://github.com/CopernicaMarketingSoftware/AMQP-CPP.git
@@ -53,3 +54,6 @@ sudo apt-get install libssl-dev -y
 make
 sudo make install
 cd ../..
+
+#Mosquitto MQTT
+sudo apt-get install libmosquitto-dev -y

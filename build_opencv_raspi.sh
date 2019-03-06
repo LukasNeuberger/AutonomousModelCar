@@ -90,7 +90,7 @@ sudo ldconfig
 
 # rename OpenCV python bindings
 cd /usr/local/python/cv2/python-3.*
-sudo mv cv2.cpython-3~ cv2.so
+sudo mv cv2.cpython-3* cv2.so
 
 # sym-link our OpenCV cv2.so bindings into our cv virtual environment
 cd ~/.virtualenvs/cv/lib/python3.*/site-packages/

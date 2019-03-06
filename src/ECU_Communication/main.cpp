@@ -6,9 +6,12 @@
 #include "Config.h"
 #include <mosquitto.h>
 #include <unistd.h>
+#include <opencv4/opencv2/opencv.hpp>
 
 #define mqtt_host "localhost"
 #define mqtt_port 1883
+
+using namespace cv;
 
 static int run = 1;
 
@@ -25,7 +28,11 @@ void connect_callback(struct mosquitto *mosq, void *obj, int result)
 void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_message *message)
 {
   bool match = 0;
-  printf("got message '%s' for topic '%s'\n", message->payloadlen, message->topic);
+  //printf("got message '%d' for topic '%s'\n", message->payloadlen, message->topic);
+  Mat frame = Mat(480, 640, CV_8UC3, message->payload);
+  //std::cout << frame << std::endl;
+  imshow("image", frame);
+  waitKey(10);
 }
 
 int main(int argc, char *argv[])
@@ -36,6 +43,8 @@ int main(int argc, char *argv[])
 
   mosquitto_lib_init();
   mosq = mosquitto_new("ECU_Communication", true, 0);
+
+  namedWindow("image", 1);
 
   if (mosq)
   {

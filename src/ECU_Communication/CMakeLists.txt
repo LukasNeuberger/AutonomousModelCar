@@ -24,7 +24,7 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(ECU_Communication main.cpp)
 
 #link amqpcpp, a RabbitMQ C++ client
-target_link_libraries(ECU_Communication PUBLIC mosquitto)
+target_link_libraries(ECU_Communication PUBLIC mosquitto ${OpenCV_LIBS})
 
 # add the install targets
 install (TARGETS ECU_Communication DESTINATION bin)

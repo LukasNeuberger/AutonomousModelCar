@@ -24,7 +24,7 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(Image_Grabber main.cpp)
 
 #link amqpcpp, a RabbitMQ C++ client
-target_link_libraries(Image_Grabber PUBLIC mosquitto)
+target_link_libraries(Image_Grabber PUBLIC mosquitto ${OpenCV_LIBS})
 
 # add the install targets
 install (TARGETS Image_Grabber DESTINATION bin)

@@ -25,13 +25,7 @@ void connect_callback(struct mosquitto *mosq, void *obj, int result)
 void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_message *message)
 {
   bool match = 0;
-  printf("got message '%.*s' for topic '%s'\n", message->payloadlen, (char *)message->payload, message->topic);
-
-  mosquitto_topic_matches_sub("/devices/wb-adc/controls/+", message->topic, &match);
-  if (match)
-  {
-    printf("got message for ADC topic\n");
-  }
+  printf("got message '%s' for topic '%s'\n", message->payloadlen, message->topic);
 }
 
 int main(int argc, char *argv[])
@@ -50,7 +44,7 @@ int main(int argc, char *argv[])
 
     rc = mosquitto_connect(mosq, mqtt_host, mqtt_port, 60);
 
-    mosquitto_subscribe(mosq, NULL, "/test", 0);
+    mosquitto_subscribe(mosq, NULL, "/image", 0);
 
     while (run)
     {

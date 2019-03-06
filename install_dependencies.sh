@@ -57,3 +57,7 @@ cd ../..
 
 #Mosquitto MQTT
 sudo apt-get install libmosquitto-dev -y
+
+#Paho MQTT
+workon cv
+pip install paho-mqtt

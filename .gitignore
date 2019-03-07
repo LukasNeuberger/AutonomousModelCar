@@ -48,3 +48,4 @@ _deps
 /build/
 /dependencies/
 *.log
+/bin/

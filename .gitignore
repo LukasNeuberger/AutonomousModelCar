@@ -49,3 +49,5 @@ _deps
 /dependencies/
 *.log
 /bin/
+/lib/
+/logs/

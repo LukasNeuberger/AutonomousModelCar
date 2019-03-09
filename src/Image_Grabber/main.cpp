@@ -11,12 +11,21 @@ using namespace cv;
 
 static int run = 1;
 
+#define FREQ (5)
 VideoCapture *cap;
+std::chrono::system_clock::time_point lastPic;
 void handle(struct mosquitto *mosq)
 {
   Mat frame;
   *cap >> frame;
-  mosquitto_publish(mosq, nullptr, "/image", IMAGE_SIZE, frame.data, 0, false);
+  auto now = chrono::system_clock::now();
+  auto timeSinceLast = chrono::duration_cast<chrono::microseconds>(now - lastPic);
+  cout << timeSinceLast.count() << endl;
+  if (timeSinceLast.count() > (1000000.0 / FREQ))
+  {
+    lastPic = now;
+    mosquitto_publish(mosq, nullptr, "/image", IMAGE_SIZE, frame.data, 0, false);
+  }
 }
 
 int main(int argc, char *argv[])
@@ -29,7 +38,7 @@ int main(int argc, char *argv[])
   if (!cap->isOpened())      // check if we succeeded
     return -1;
 
-  MessagingLoop(mosq, handle, 1);
+  MessagingLoop(mosq, handle);
 
   mosquitto_destroy(mosq);
   mosquitto_lib_cleanup();

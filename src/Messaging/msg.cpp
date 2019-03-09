@@ -64,7 +64,6 @@ void MessagingLoop(struct mosquitto *mosq, void (*handle)(struct mosquitto *), i
 
         auto elapsed = chrono::duration_cast<chrono::microseconds>(chrono::system_clock::now() - start);
         auto rest = loop_time - elapsed;
-        //cout << "sleep " << chrono::duration_cast<chrono::milliseconds>(rest).count() << endl;
         if (rest.count() > 0)
             this_thread::sleep_for(rest);
     }

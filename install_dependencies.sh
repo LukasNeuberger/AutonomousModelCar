@@ -56,7 +56,7 @@ cd dependencies
 #cd ../..
 
 #Mosquitto MQTT
-sudo apt-get install libmosquitto-dev -y
+sudo apt-get install mosquitto libmosquitto-dev -y
 
 #Paho MQTT
 workon cv

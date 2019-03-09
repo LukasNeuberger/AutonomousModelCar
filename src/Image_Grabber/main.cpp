@@ -16,7 +16,6 @@ void handle(struct mosquitto *mosq)
 {
   Mat frame;
   *cap >> frame;
-  cout << "frames " << cap->get(CAP_PROP_POS_FRAMES) << endl;
   mosquitto_publish(mosq, nullptr, "/image", IMAGE_SIZE, frame.data, 0, false);
 }
 

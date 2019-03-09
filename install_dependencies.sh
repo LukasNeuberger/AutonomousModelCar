@@ -44,16 +44,16 @@ cd dependencies
 #cd ..
 
 #RabbitMQ
-sudo apt-get install rabbitmq-server -y
-sudo rabbitmq-plugins enable rabbitmq_mqtt
+#sudo apt-get install rabbitmq-server -y
+#sudo rabbitmq-plugins enable rabbitmq_mqtt
 
 #RabbitMQ C++
-git clone https://github.com/CopernicaMarketingSoftware/AMQP-CPP.git
-cd AMQP-CPP
-sudo apt-get install libssl-dev -y
-make
-sudo make install
-cd ../..
+#git clone https://github.com/CopernicaMarketingSoftware/AMQP-CPP.git
+#cd AMQP-CPP
+#sudo apt-get install libssl-dev -y
+#make
+#sudo make install
+#cd ../..
 
 #Mosquitto MQTT
 sudo apt-get install libmosquitto-dev -y

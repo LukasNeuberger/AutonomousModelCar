@@ -10,10 +10,19 @@
 using namespace std;
 using namespace cv;
 
-static int run = 1;
+struct mosquitto *mosq;
+
+void connect_callback(struct mosquitto *mosq, void *obj, int result)
+{
+  default_connect_callback(mosq, obj, result);
+
+  MessagingSubscribe(mosq, NULL, "/image", 0);
+}
 
 void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_message *message)
 {
+  default_message_callback(mosq, obj, message);
+
   Mat frame = Mat(IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CV_TYPE, message->payload);
   imshow("image", frame);
   waitKey(1);
@@ -21,12 +30,9 @@ void message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_
 
 int main(int argc, char *argv[])
 {
-  struct mosquitto *mosq = MessagingInit("ECU_Communication");
+  mosq = MessagingInit("ECU_Communication", connect_callback, message_callback);
   if (!mosq)
     return 0;
-
-  MessagingSetMessageCallback(mosq, message_callback);
-  MessagingSubscribe(mosq, NULL, "/image", 0);
 
   namedWindow("image", 1);
 

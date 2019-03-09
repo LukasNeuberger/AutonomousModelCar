@@ -1,4 +1,5 @@
 
+#include "msg.h"
 #include <iostream>
 #include <mosquitto.h>
 #include <thread> // std::this_thread::sleep_for
@@ -6,10 +7,10 @@
 
 using namespace std;
 
-#define mqtt_host "localhost"
+#define mqtt_host "192.168.188.52"
 #define mqtt_port 1883
 
-void connect_callback(struct mosquitto *mosq, void *obj, int result)
+void default_connect_callback(struct mosquitto *mosq, void *obj, int result)
 {
     if (result)
         cout << "node connection error, rc=" << result << endl;
@@ -17,7 +18,14 @@ void connect_callback(struct mosquitto *mosq, void *obj, int result)
         cout << "node connected" << endl;
 }
 
-struct mosquitto *MessagingInit(const char *node_name)
+void default_message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_message *message)
+{
+    cout << "Received a message on topic " << message->topic << " with length " << message->payloadlen << endl;
+}
+
+struct mosquitto *MessagingInit(const char *node_name,
+                                void (*connect_callback)(struct mosquitto *mosq, void *obj, int result),
+                                void (*message_callback)(struct mosquitto *mosq, void *obj, const struct mosquitto_message *message))
 {
     cout << "starting" << endl;
     uint8_t reconnect = true;
@@ -28,6 +36,7 @@ struct mosquitto *MessagingInit(const char *node_name)
     if (!mosq)
         return 0;
     mosquitto_connect_callback_set(mosq, connect_callback);
+    mosquitto_message_callback_set(mosq, message_callback);
     rc = mosquitto_connect(mosq, mqtt_host, mqtt_port, 2);
     if (rc)
         return 0;
@@ -36,14 +45,14 @@ struct mosquitto *MessagingInit(const char *node_name)
     return mosq;
 }
 
-void MessagingSetMessageCallback(struct mosquitto *mosq, void (*on_message)(struct mosquitto *, void *, const struct mosquitto_message *))
-{
-    mosquitto_message_callback_set(mosq, on_message);
-}
-
 int MessagingSubscribe(struct mosquitto *mosq, int *mid, const char *sub, int qos)
 {
     return mosquitto_subscribe(mosq, mid, sub, qos);
+}
+
+int MessagingPublish(struct mosquitto *mosq, int *mid, const char *topic, int payloadlen, const void *payload, int qos, bool retain)
+{
+    return mosquitto_publish(mosq, mid, opic, payloadlen, payload, qos, retain);
 }
 
 void MessagingLoop(struct mosquitto *mosq, void (*handle)(struct mosquitto *), int frequency)

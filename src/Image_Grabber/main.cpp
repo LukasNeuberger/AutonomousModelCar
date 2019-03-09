@@ -9,8 +9,6 @@
 using namespace std;
 using namespace cv;
 
-static int run = 1;
-
 #define FREQ (5)
 VideoCapture *cap;
 std::chrono::system_clock::time_point lastPic;
@@ -20,7 +18,6 @@ void handle(struct mosquitto *mosq)
   *cap >> frame;
   auto now = chrono::system_clock::now();
   auto timeSinceLast = chrono::duration_cast<chrono::microseconds>(now - lastPic);
-  cout << timeSinceLast.count() << endl;
   if (timeSinceLast.count() > (1000000.0 / FREQ))
   {
     lastPic = now;

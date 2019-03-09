@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define mqtt_host "192.168.188.52"
+#define mqtt_host "localhost"
 #define mqtt_port 1883
 
 void default_connect_callback(struct mosquitto *mosq, void *obj, int result)

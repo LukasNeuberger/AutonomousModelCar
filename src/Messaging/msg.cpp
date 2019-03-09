@@ -52,7 +52,7 @@ int MessagingSubscribe(struct mosquitto *mosq, int *mid, const char *sub, int qo
 
 int MessagingPublish(struct mosquitto *mosq, int *mid, const char *topic, int payloadlen, const void *payload, int qos, bool retain)
 {
-    return mosquitto_publish(mosq, mid, opic, payloadlen, payload, qos, retain);
+    return mosquitto_publish(mosq, mid, topic, payloadlen, payload, qos, retain);
 }
 
 void MessagingLoop(struct mosquitto *mosq, void (*handle)(struct mosquitto *), int frequency)

@@ -39,7 +39,7 @@ cd dependencies
 #echo "alias ospl=\"source $HOME/opensplice/install/HDE/$TARGET/release.com\"" >> ~/.bashrc
 #source $HOME/.bashrc
 #source $HOME/opensplice/install/HDE/$TARGET/release.com
-#make
+#make -j4
 #sudo make install
 #cd ..
 
@@ -51,13 +51,29 @@ cd dependencies
 #git clone https://github.com/CopernicaMarketingSoftware/AMQP-CPP.git
 #cd AMQP-CPP
 #sudo apt-get install libssl-dev -y
-#make
+#make -j4
 #sudo make install
 #cd ../..
 
 #Mosquitto MQTT
-sudo apt-get install mosquitto libmosquitto-dev -y
+#sudo apt-get install mosquitto libmosquitto-dev -y
 
 #Paho MQTT
-workon cv
-pip install paho-mqtt
+#workon cv
+#pip install paho-mqtt
+
+#Fast RTPS
+git clone https://github.com/eProsima/Fast-RTPS
+cd Fast-RTPS
+mkdir build
+cd build
+cmake -DTHIRDPARTY=ON ..
+make -j4
+sudo make install
+cd ../..
+
+#darknet + darknet reference model
+#git clone https://github.com/pjreddie/darknet.git
+#cd darknet
+#make -j4
+#wget http://pjreddie.com/media/files/darknet.weights

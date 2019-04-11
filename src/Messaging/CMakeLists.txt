@@ -5,7 +5,7 @@ project (Messaging)
 add_library(Messaging msg.cpp)
 
 #link MQTT library mosquitto
-target_link_libraries(Messaging PUBLIC mosquitto)
+target_link_libraries(Messaging PUBLIC fastrtps)
 
 # add the install targets
 install (TARGETS Messaging 

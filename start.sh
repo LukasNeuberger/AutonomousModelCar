@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+./generate_message_types.sh
 ./compile.sh
 
 mkdir -p logs

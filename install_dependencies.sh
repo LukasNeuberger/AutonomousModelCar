@@ -63,11 +63,12 @@ cd dependencies
 #pip install paho-mqtt
 
 #Fast RTPS
+sudo apt-get install gradle
 git clone https://github.com/eProsima/Fast-RTPS
 cd Fast-RTPS
 mkdir build
 cd build
-cmake -DTHIRDPARTY=ON ..
+cmake -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
 make -j4
 sudo make install
 cd ../..

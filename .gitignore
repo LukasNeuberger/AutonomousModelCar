@@ -52,3 +52,5 @@ _deps
 /lib/
 /logs/
 /src/MessageTypes/
+*.bin
+*.ipch

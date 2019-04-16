@@ -4,7 +4,7 @@ project (Image_Grabber)
 # add the executable
 add_executable(Image_Grabber main.cpp)
 
-#link MQTT library mosquitto
+#link RTPS library fastrtps
 target_link_libraries(Image_Grabber PUBLIC Messaging ${OpenCV_LIBS})
 
 # add the install targets

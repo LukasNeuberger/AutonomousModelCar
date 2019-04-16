@@ -4,12 +4,14 @@
 #include <iostream>
 #include <opencv4/opencv2/opencv.hpp>
 #include <Constants/image.h>
-#include <CamImageSubscriber.h>
+
+#include <CustomSubscriber.h>
+#include <CamImage.h>
 
 using namespace std;
 using namespace cv;
 
-CamImageSubscriber sub = CamImageSubscriber();
+CustomSubscriber<CamImage> sub = CustomSubscriber<CamImage>();
 
 int main(int argc, char *argv[])
 {

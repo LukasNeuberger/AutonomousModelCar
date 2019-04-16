@@ -3,14 +3,16 @@
 #include <stdlib.h>
 #include <opencv4/opencv2/opencv.hpp>
 #include <Constants/image.h>
-#include <CamImagePublisher.h>
+#include <CustomPublisher.h>
 #include <thread> // std::this_thread::sleep_for
 #include <chrono> // std::chrono::seconds
+
+#include <CamImage.h>
 
 using namespace std;
 using namespace cv;
 
-CamImagePublisher pub = CamImagePublisher();
+CustomPublisher<CamImage> pub = CustomPublisher<CamImage>();
 
 int frequency = 5;
 VideoCapture *cap;

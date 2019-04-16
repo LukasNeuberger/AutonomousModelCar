@@ -1,2 +1,6 @@
-mkdir src/MessageTypes
-fastrtpsgen -d src/MessageTypes MessageTypes/*.idl
+mkdir src/Messaging
+mkdir src/Messaging/Types
+
+fastrtpsgen -replace -d src/Messaging/Types MessageTypes/*.idl
+
+rm src/Messaging/Types/*PubSubTypes.*

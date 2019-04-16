@@ -7,7 +7,7 @@
 #include <thread> // std::this_thread::sleep_for
 #include <chrono> // std::chrono::seconds
 
-#include <CamImage.h>
+#include <Types/CamImage.h>
 
 using namespace std;
 using namespace cv;

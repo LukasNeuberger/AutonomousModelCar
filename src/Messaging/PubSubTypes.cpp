@@ -24,7 +24,7 @@
 
 #include "PubSubTypes.h"
 
-#include "CamImage.h"
+#include "Types/CamImage.h"
 
 using namespace eprosima::fastrtps;
 using namespace eprosima::fastrtps::rtps;

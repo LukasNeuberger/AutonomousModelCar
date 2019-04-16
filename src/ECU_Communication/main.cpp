@@ -6,7 +6,7 @@
 #include <Constants/image.h>
 
 #include <CustomSubscriber.h>
-#include <CamImage.h>
+#include <Types/CamImage.h>
 
 using namespace std;
 using namespace cv;

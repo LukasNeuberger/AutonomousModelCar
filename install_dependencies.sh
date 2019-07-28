@@ -66,6 +66,7 @@ cd dependencies
 sudo apt-get install gradle
 git clone https://github.com/eProsima/Fast-RTPS
 cd Fast-RTPS
+git checkout v1.8.0
 mkdir build
 cd build
 cmake -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
